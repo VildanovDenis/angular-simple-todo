@@ -1,0 +1,24 @@
+<ul class="todos-list">
+  <li *ngFor="let todo of todosService.todos; let i = index">
+    <div
+      class="todos-list__card todo-card"
+      [class.todo-card--done]="todo.finished"
+      [class.todo-card--not-done]="!todo.finished">
+      <span class="todo-card__title">Task #{{ i + 1 }}</span>
+      <span>{{ todo.title }}</span>
+      <div>
+        <input
+          type="checkbox"
+          id="todo_finished{{i}}"
+          [checked]="todo.finished"
+          (change)="onChange(todo.id)">
+        <label for="todo_finished{{i}}">
+          <span *ngIf="!todo.finished">mark as done</span>
+          <span *ngIf="todo.finished">mark as not done</span>
+        </label>
+      </div>
+      <span>{{ todo.date | date:"medium" }}</span>
+      <button type="button" class="todo-card__delete" (click)="removeTodo(todo.id)">&times;</button>
+    </div>
+  </li>
+</ul>
