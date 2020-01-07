@@ -1,24 +1,32 @@
-<ul class="todos-list">
-  <li *ngFor="let todo of todosService.todos; let i = index">
-    <div
-      class="todos-list__card todo-card"
-      [class.todo-card--done]="todo.finished"
-      [class.todo-card--not-done]="!todo.finished">
-      <span class="todo-card__title">Task #{{ i + 1 }}</span>
-      <span>{{ todo.title }}</span>
-      <div>
-        <input
-          type="checkbox"
-          id="todo_finished{{i}}"
-          [checked]="todo.finished"
-          (change)="onChange(todo.id)">
-        <label for="todo_finished{{i}}">
-          <span *ngIf="!todo.finished">mark as done</span>
-          <span *ngIf="todo.finished">mark as not done</span>
-        </label>
+<div *ngIf="!loading">
+  <ul class="todos-list" *ngIf="todosService.todos.length; else noTodos">
+    <li *ngFor="let todo of todosService.todos; let i = index">
+      <div
+        class="todos-list__card todo-card"
+        [class.todo-card--done]="todo.finished"
+        [class.todo-card--not-done]="!todo.finished">
+        <span class="todo-card__title">Task #{{ i + 1 }}</span>
+        <span>{{ todo.title }}</span>
+        <span>{{ todo.date | date:"medium" }}</span>
+        <div class="todo-card__checkbox-wrapper">
+          <input
+            type="checkbox"
+            id="todo_finished{{i}}"
+            [checked]="todo.finished"
+            (change)="onChange(todo.id)">
+          <label for="todo_finished{{i}}">
+            <span *ngIf="!todo.finished">mark as done</span>
+            <span *ngIf="todo.finished">mark as not done</span>
+          </label>
+        </div>
+        <button type="button" class="todo-card__delete" (click)="removeTodo(todo.id)">&times;</button>
       </div>
-      <span>{{ todo.date | date:"medium" }}</span>
-      <button type="button" class="todo-card__delete" (click)="removeTodo(todo.id)">&times;</button>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+
+  <ng-template #noTodos>
+    <p style="text-align: center;">There is no todos yet</p>
+  </ng-template>
+</div>
+
+<p *ngIf="loading" style="text-align: center;">Loading todos...</p>

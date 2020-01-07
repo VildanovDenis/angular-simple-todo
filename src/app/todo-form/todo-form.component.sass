@@ -1,0 +1,56 @@
+.add-todo
+  position: relative
+  display: grid
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr))
+  grid-gap: 20px
+.add-todo__open-modal-button, .add-todo__form-add-button
+  padding: 10px
+  border: 1px solid lightgray
+  border-radius: 5px
+  background-color: lighten(lightgray, 15%)
+  cursor: pointer
+  transition: .1s
+  &:hover
+    background-color: lightgray
+.add-todo__modal
+  position: fixed
+  top: 0
+  left: 0
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 100vw
+  height: 100vh
+  background-color: rgba(black, 0.1)
+.add-todo__form
+  position: relative
+  display: flex
+  flex-direction: column
+  width: 100%
+  max-width: 320px
+  padding: 40px 25px
+  border: 1px solid black
+  border-radius: 5px
+  background-color: white
+.add-todo__form-input
+  max-width: 320px
+  margin-bottom: 15px
+  padding: 10px
+  border: 1px solid lightgray
+  border-radius: 5px
+.add-todo__close-modal-button
+  position: absolute
+  top: 0px
+  right: 0px
+  min-width: 25px
+  min-height: 25px
+  padding: 2px
+  border: 0
+  font-size: 25px
+  line-height: 25px
+  color: red
+  background-color: transparent
+  transition: opacity 0.3s
+  cursor: pointer
+  &:hover
+    opacity: 0.6

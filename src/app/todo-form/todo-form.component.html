@@ -1,0 +1,24 @@
+<div class='add-todo'>
+  <button type='button' class='add-todo__open-modal-button' (click)='onToggleModalClick()'>Add todo</button>
+  <div *ngIf='isModalShow' class='add-todo__modal'>
+    <div class='add-todo__form'>
+      <input
+        type='text'
+        placeholder='Todo title'
+        class='add-todo__form-input'
+        [(ngModel)]='title'
+        (keydown.enter)='addTodo()'/>
+      <button
+        type='button'
+        class='add-todo__form-add-button'
+        (click)='addTodo()'>
+        Add
+      </button>
+      <button
+        class='add-todo__close-modal-button'
+        type='button' (click)='onToggleModalClick()'>
+        &times;
+      </button>
+    </div>
+  </div>
+</div>
