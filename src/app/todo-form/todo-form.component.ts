@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Todo, TodosService } from '../shared/todos.service';
-import { TodosComponent } from '../todos/todos.component';
 
 @Component({
   selector: 'app-todo-form',
@@ -9,8 +8,8 @@ import { TodosComponent } from '../todos/todos.component';
 })
 
 export class TodoFormComponent implements OnInit {
-  private isModalShow: boolean = false
-  private title: string = ''
+  private isModalShow = false
+  private title = ''
 
   constructor(private todosService: TodosService) { }
 
@@ -22,6 +21,10 @@ export class TodoFormComponent implements OnInit {
   }
 
   addTodo() {
+    if (!this.title) {
+      return
+    }
+
     const todo: Todo = {
       title: this.title,
       id: Date.now(),
